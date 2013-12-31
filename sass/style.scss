@@ -1,0 +1,35 @@
+/**
+*	Kickstart files for html/css project. Based on Kaelig documentation (blog.kaelig.fr) and on compass (http://compass-style.org/)
+*/
+
+@import "reset";
+
+
+/*Colors*/
+
+$primary: #dd5b6a;/*rouge*/
+$secondary: #B4B4BE; /*gris*/
+$bodycolor: #63636d;
+
+
+@import "typo";
+@import "forms";
+@import "layout";
+@import "global";
+
+
+/*
+	MAIN
+	====
+*/
+body {
+	color: $bodycolor;
+}
+
+
+
+@import "mediaqueries";
+@import "print";
+
+
+

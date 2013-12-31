@@ -1,0 +1,18 @@
+/*
+	GLOBALS
+	=======
+*/
+
+::selection {
+	color:#fff;
+	background-color: $primary;
+}
+::-moz-selection {
+	color:#fff;
+	background-color: $primary;
+}
+
+
+a {
+	transition: all 200ms ease;
+}
