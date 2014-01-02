@@ -9,8 +9,8 @@ Pour cela, aller dans le répertoire, et faire npm init, puis entrée plusieurs 
 Le Json est créé.
 
 Ensuite, installer Grunt puis l'installer dans le projet
-  npm install -g grunt-cli
-  npm install grunt --save-dev
+    npm install -g grunt-cli
+    npm install grunt --save-dev
 
 Ensuite, on crée un fichier de config grunt
 touch Gruntfile.js ne marche pas, le créer à la main, et coller ça:
@@ -28,19 +28,19 @@ touch Gruntfile.js ne marche pas, le créer à la main, et coller ça:
 
 
 Mieux, on installe compass:
-  npm install grunt-contrib-compass --save-dev
+    npm install grunt-contrib-compass --save-dev
 
 On installe un moyen de concatener ses fichiers js
-  npm install grunt-contrib-concat --save-dev
+    npm install grunt-contrib-concat --save-dev
 
 On installe un compresseur de fichiers
-  npm install grunt-contrib-uglify --save-dev
+    npm install grunt-contrib-uglify --save-dev
 
 On installe le moyen de watcher les fichiers
-  npm install grunt-contrib-watch --save-dev
+    npm install grunt-contrib-watch --save-dev
 
 On installe autoprefixer
-  npm install grunt-autoprefixer --save-dev
+    npm install grunt-autoprefixer --save-dev
 
 Désormais il suffit de lancer grunt tout court, watch étant la tâche par défaut
 Si on fait grunt, il lance la tache dist, grunt dev lance la dev, etc. A creuser.
