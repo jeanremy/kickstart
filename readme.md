@@ -123,4 +123,4 @@ Le fichiers de config ressemble à ça, avec deux tâches, un dev et une prod ! 
       grunt.registerTask('prod', ['dist', 'watch:prod'])
       grunt.registerTask('dev', ['compass:dev', 'autoprefixer:no_dest'])
       grunt.registerTask('prod', ['compass:dist', 'autoprefixer:no_dest', 'concat:compile', 'uglify:compile'])
-  }
+    }
