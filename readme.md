@@ -14,33 +14,33 @@ Ensuite, installer Grunt puis l'installer dans le projet
 
 Ensuite, on crée un fichier de config grunt
 touch Gruntfile.js ne marche pas, le créer à la main, et coller ça:
-  module.exports = function(grunt) {
+    module.exports = function(grunt) {
 
-    // Configuration de Grunt
-    grunt.initConfig({})
+      // Configuration de Grunt
+      grunt.initConfig({})
 
-    // Définition des tâches Grunt
-    grunt.registerTask('default', '')
+      // Définition des tâches Grunt
+      grunt.registerTask('default', '')
 
-  }
+    }
 
 /*Dépendances et paquets*/
 
 
 Mieux, on installe compass:
-`npm install grunt-contrib-compass --save-dev`
+  npm install grunt-contrib-compass --save-dev
 
 On installe un moyen de concatener ses fichiers js
-`npm install grunt-contrib-concat --save-dev`
+  npm install grunt-contrib-concat --save-dev
 
 On installe un compresseur de fichiers
-`npm install grunt-contrib-uglify --save-dev`
+  npm install grunt-contrib-uglify --save-dev
 
 On installe le moyen de watcher les fichiers
-`npm install grunt-contrib-watch --save-dev`
+  npm install grunt-contrib-watch --save-dev
 
 On installe autoprefixer
-`npm install grunt-autoprefixer --save-dev`
+  npm install grunt-autoprefixer --save-dev
 
 Désormais il suffit de lancer grunt tout court, watch étant la tâche par défaut
 Si on fait grunt, il lance la tache dist, grunt dev lance la dev, etc. A creuser.
@@ -49,72 +49,78 @@ Si on fait grunt, il lance la tache dist, grunt dev lance la dev, etc. A creuser
 
 Le fichiers de config ressemble à ça, avec deux tâches, un dev et une prod ! Attention, compass non intégré !
 
-  module.exports = function(grunt) {
+    module.exports = function(grunt) {
 
-    // Je préfère définir mes imports tout en haut
-    grunt.loadNpmTasks('grunt-contrib-sass')
-    grunt.loadNpmTasks('grunt-contrib-concat')  
-    grunt.loadNpmTasks('grunt-contrib-uglify')
-    grunt.loadNpmTasks('grunt-contrib-watch')
+      // Import 
+      grunt.loadNpmTasks('grunt-contrib-compass')
+      grunt.loadNpmTasks('grunt-contrib-concat')  
+      grunt.loadNpmTasks('grunt-contrib-uglify')
+      grunt.loadNpmTasks('grunt-autoprefixer')
+      grunt.loadNpmTasks('grunt-contrib-watch')
 
-    var jsSrc = ['src/intro.js', 'src/project.js', 'src/outro.js']
-      , jsDist = 'dist/built.js'
+      var jsSrc = ['js/*.js', 'js/vendor/*.js']
+      , jsDist = 'js/main.min.js'
 
-    // Configuration de Grunt
-    grunt.initConfig({
-      sass: {
-        dist: {
-          options: {
-            style: 'expanded'
-          },
-          files: {
-            "expand": true,
-            "cwd": "src/styles/",
-            "src": ["*.scss"],
-            "dest": "dist/styles/",
-            "ext": ".css"
+      // Configuration de Grunt
+      grunt.initConfig({
+      compass: {                  
+        dist: {                   
+            options: {            
+              sassDir: 'sass',
+              cssDir: 'css',
+              imagesDir: 'img',
+              outputStyle: 'compressed'
           }
         },
-        dev: {} // A vous de le faire ! vous verrez que certaines options Sass sont plus intéressantes en mode dev que d'autres.
+        dev: {                   
+          options: {
+                sassDir: 'sass',
+              cssDir: 'css',
+              imagesDir: 'img',
+              outputStyle: 'expanded',
+              noLineComments: true
+          }
+        }
+      },
+      autoprefixer: {
+        no_dest: {
+            src: 'css/*.css'
+          }
       },
       concat: {
         options: {
           separator: ';'
-        },
-        compile: { // On renomme vu qu'on a pas de mode dev/dist. Dist étant une autre tâche : uglify
-          src: jsSrc, // Vu qu'on doit l'utiliser deux fois, autant en faire une variable.
-          dest: jsDist // Il existe des hacks plus intéressants mais ce n'est pas le sujet du post.
-        }
+          },
+          compile: { 
+          src: jsSrc, 
+          dest: jsDist 
+          }
       },
       uglify: {
-        options: {
+          options: {
           separator: ';'
-        },
-        compile: {
+          },
+          compile: {
           src: jsSrc,
           dest: jsDist
-        }
+          }
       },
       watch: {
-        scripts: {
-          files: '**/*.js',
-          tasks: ['scripts:dev']
-        },
-        styles: {
-          files: '**/*.scss',
-          tasks: ['styles:dev']
-        }
+        dev: {
+          files: ['sass/*.scss'],
+          tasks: ['dev']
+          },
+          prod: {
+          files: ['js/*.js', '/js/vendor/*.js', 'sass/*.scss', '*.html'],
+          tasks: ['prod']
+          }
       }
-    })
+      })
 
-    grunt.registerTask('default', ['dev', 'watch'])
-    grunt.registerTask('dev', ['styles:dev', 'scripts:dev'])
-    grunt.registerTask('dist', ['styles:dist', 'scripts:dist'])
+      //Enregistrement des tâches et assignations
 
-    // J'aime bien avoir des noms génériques
-    grunt.registerTask('scripts:dev', ['concat:compile'])
-    grunt.registerTask('scripts:dist', ['uglify:compile'])
-
-    grunt.registerTask('styles:dev', ['sass:dev'])
-    grunt.registerTask('styles:dist', ['sass:dist'])
+      grunt.registerTask('default', ['dev', 'watch:dev'])
+      grunt.registerTask('prod', ['dist', 'watch:prod'])
+      grunt.registerTask('dev', ['compass:dev', 'autoprefixer:no_dest'])
+      grunt.registerTask('prod', ['compass:dist', 'autoprefixer:no_dest', 'concat:compile', 'uglify:compile'])
   }
