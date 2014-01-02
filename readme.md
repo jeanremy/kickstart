@@ -1,7 +1,7 @@
 # Kickstarter base for small projects #
 
 ## Créer un projet avec Grunt ##
-Src: http://putaindecode.fr/posts/js/premiers-pas-avec-grunt/
+Src: [Super tuto de Putain de code](http://putaindecode.fr/posts/js/premiers-pas-avec-grunt/)
 
 D'abord, initialiser le projet en node js
 Node va créer un json avec les paramètres du projet.
@@ -9,12 +9,12 @@ Pour cela, aller dans le répertoire, et faire npm init, puis entrée plusieurs 
 Le Json est créé.
 
 Ensuite, installer Grunt puis l'installer dans le projet
-npm install -g grunt-cli
-npm install grunt --save-dev
+`npm install -g grunt-cli
+npm install grunt --save-dev`
 
 Ensuite, on crée un fichier de config grunt
 touch Gruntfile.js ne marche pas, le créer à la main, et coller ça:
-module.exports = function(grunt) {
+`module.exports = function(grunt) {
 
   // Configuration de Grunt
   grunt.initConfig({})
@@ -22,27 +22,25 @@ module.exports = function(grunt) {
   // Définition des tâches Grunt
   grunt.registerTask('default', '')
 
-}
+}`
 
 /*Dépendances et paquets*/
 
-On installe sass:
-npm install grunt-contrib-sass --save-dev
 
 Mieux, on installe compass:
-npm install grunt-contrib-compass --save-dev
+`npm install grunt-contrib-compass --save-dev`
 
 On installe un moyen de concatener ses fichiers js
-npm install grunt-contrib-concat --save-dev
+`npm install grunt-contrib-concat --save-dev`
 
 On installe un compresseur de fichiers
-npm install grunt-contrib-uglify --save-dev
+`npm install grunt-contrib-uglify --save-dev`
 
 On installe le moyen de watcher les fichiers
-npm install grunt-contrib-watch --save-dev
+`npm install grunt-contrib-watch --save-dev`
 
 On installe autoprefixer
-npm install grunt-autoprefixer --save-dev
+`npm install grunt-autoprefixer --save-dev`
 
 Désormais il suffit de lancer grunt tout court, watch étant la tâche par défaut
 Si on fait grunt, il lance la tache dist, grunt dev lance la dev, etc. A creuser.
@@ -51,7 +49,7 @@ Si on fait grunt, il lance la tache dist, grunt dev lance la dev, etc. A creuser
 
 Le fichiers de config ressemble à ça, avec deux tâches, un dev et une prod ! Attention, compass non intégré !
 
-module.exports = function(grunt) {
+`module.exports = function(grunt) {
 
   // Je préfère définir mes imports tout en haut
   grunt.loadNpmTasks('grunt-contrib-sass')
@@ -119,4 +117,4 @@ module.exports = function(grunt) {
 
   grunt.registerTask('styles:dev', ['sass:dev'])
   grunt.registerTask('styles:dist', ['sass:dist'])
-}
+}`

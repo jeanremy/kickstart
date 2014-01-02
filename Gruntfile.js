@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
-  // Je préfère définir mes imports tout en haut
-  grunt.loadNpmTasks('grunt-contrib-sass')
+  // Import 
   grunt.loadNpmTasks('grunt-contrib-compass')
   grunt.loadNpmTasks('grunt-contrib-concat')  
   grunt.loadNpmTasks('grunt-contrib-uglify')
@@ -19,8 +18,7 @@ module.exports = function(grunt) {
 		   		sassDir: 'sass',
 		    	cssDir: 'css',
 		    	imagesDir: 'img',
-		    	outputStyle: 'compressed',
-		    	watch: true
+		    	outputStyle: 'compressed'
 		  }
 		},
 		dev: {                   
@@ -29,16 +27,13 @@ module.exports = function(grunt) {
 		    	cssDir: 'css',
 		    	imagesDir: 'img',
 		    	outputStyle: 'expanded',
-		    	noLineComments: true,
-		    	watch: true
+		    	noLineComments: true
 			}
 		}
 	},
 	autoprefixer: {
-		multiple_files: {
-	      	expand: true,
-	      	flatten: true,
-	      	src: 'css/*.css'
+		no_dest: {
+	    	src: 'css/*.css'
 	    }
 	},
 	concat: {
@@ -60,34 +55,21 @@ module.exports = function(grunt) {
 	  	}
 	},
 	watch: {
-	 	scripts: {
-			files: '**/*.js',
-			tasks: ['scripts:dev'],
-		    options: {
-		    	livereload: true,
-		    }
+	 	dev: {
+			files: ['sass/*.scss'],
+			tasks: ['dev']
 	  	},
-	  	styles: {
-			files: '**/*.scss',
-			tasks: ['styles:dev'],
-		    options: {
-		    	livereload: true,
-		    }
+	  	prod: {
+			files: ['js/*.js', '/js/vendor/*.js', 'sass/*.scss', '*.html'],
+			tasks: ['prod']
 	  	}
 	}
   })
 
   //Enregistrement des tâches et assignations
 
-  grunt.registerTask('default', ['dev', 'watch'])
-  grunt.registerTask('prod', ['dist', 'watch'])
-  grunt.registerTask('dev', ['styles:dev', 'scripts:dev'])
-  grunt.registerTask('dist', ['styles:dist', 'scripts:dist'])
-
-
-  grunt.registerTask('scripts:dev', ['concat:compile'])
-  grunt.registerTask('scripts:dist', ['uglify:compile'])
-
-  grunt.registerTask('styles:dev', ['compass:dev', 'autoprefixer:multiple_files'])
-  grunt.registerTask('styles:dist', ['compass:dist', 'autoprefixer:multiple_files'])
+  grunt.registerTask('default', ['dev', 'watch:dev'])
+  grunt.registerTask('prod', ['dist', 'watch:prod'])
+  grunt.registerTask('dev', ['compass:dev', 'autoprefixer:no_dest'])
+  grunt.registerTask('prod', ['compass:dist', 'autoprefixer:no_dest', 'concat:compile', 'uglify:compile'])
 }
