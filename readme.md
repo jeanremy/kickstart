@@ -39,6 +39,9 @@ On installe le moyen de watcher les fichiers
 On installe autoprefixer
     npm install grunt-autoprefixer --save-dev
 
+On installe Image min
+    npm install grunt-contrib-imagemin --save-dev
+
 Désormais il suffit de lancer grunt tout court, watch étant la tâche par défaut. (Une seule tâche)
 
 [--save-dev permet de sauvegarder le package dans package.json pour pouvoir à tout moment le réinstaller en faisant npm install]
