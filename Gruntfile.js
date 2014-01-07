@@ -2,32 +2,20 @@ module.exports = function(grunt) {
 
   // Import 
   grunt.loadNpmTasks('grunt-contrib-compass')
-  grunt.loadNpmTasks('grunt-contrib-concat')  
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-autoprefixer')
   grunt.loadNpmTasks('grunt-contrib-watch')
 
-  var jsSrc = ['js/*.js', 'js/vendor/*.js']
-	, jsDist = 'js/main.min.js'
 
   // Configuration de Grunt
   grunt.initConfig({
-	compass: {                  
-		dist: {                   
-		  	options: {            
+	compass: {
+		all: {                    
+			options: {            
 		   		sassDir: 'sass',
 		    	cssDir: 'css',
 		    	imagesDir: 'img',
 		    	outputStyle: 'compressed'
-		  }
-		},
-		dev: {                   
-			options: {
-		        sassDir: 'sass',
-		    	cssDir: 'css',
-		    	imagesDir: 'img',
-		    	outputStyle: 'expanded',
-		    	noLineComments: true
 			}
 		}
 	},
@@ -36,40 +24,38 @@ module.exports = function(grunt) {
 	    	src: 'css/*.css'
 	    }
 	},
-	concat: {
-		options: {
-			separator: ';'
-	  	},
-	  	compile: { 
-			src: jsSrc, 
-			dest: jsDist 
-	  	}
-	},
 	uglify: {
 	  	options: {
 			separator: ';'
 	  	},
 	  	compile: {
-			src: jsSrc,
-			dest: jsDist
+			src: 'js/main.js',
+			dest: 'js/main.min.js'
 	  	}
 	},
 	watch: {
-	 	dev: {
-			files: ['sass/*.scss'],
-			tasks: ['dev']
-	  	},
 	  	prod: {
-			files: ['js/*.js', '/js/vendor/*.js', 'sass/*.scss', '*.html'],
-			tasks: ['prod']
-	  	}
+			files: ['js/main.js', '/js/vendor/*.js', 'sass/*.scss', '*.html'],
+			tasks: ['task']
+	  	},
+	  	livereload: {
+	      options: { livereload: true },
+	      files: ['css/style.css', '*.html', '*.php', 'js/main.min.js'],
+	    }
 	}
   })
 
   //Enregistrement des tâches et assignations
 
-  grunt.registerTask('default', ['dev', 'watch:dev'])
-  grunt.registerTask('prod', ['dist', 'watch:prod'])
-  grunt.registerTask('dev', ['compass:dev', 'autoprefixer:no_dest'])
-  grunt.registerTask('prod', ['compass:dist', 'autoprefixer:no_dest', 'concat:compile', 'uglify:compile'])
+  grunt.registerTask('default', 'watch')
+  grunt.registerTask('task', ['compass:all', 'autoprefixer:no_dest', 'uglify:compile'])
+
+  //TAF
+  /*
+  Changement radical: une seule tâche, un watch global pour avoir le livereload;
+  On oublie la concatenation, car ça oblige à regouper tous les js, 
+  y compris modernizr dans un fichier;
+  On uglifie le main en main.min, directement lié dans le html
+  Le style est lui aussi minifié directement via compass
+  */
 }
