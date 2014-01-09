@@ -2,6 +2,12 @@
 	TYPO
 	====
 */
+$browser-context: 14; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em
+}
+
 
 html {
 	font-size: 62.5%;
