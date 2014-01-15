@@ -5,12 +5,36 @@
 @import "reset";
 
 
-/*Colors*/
+/*
+	VARIABLES & MIXINS
+	==================
+*/
 
-$primary: #dd5b6a;/*rouge*/
-$secondary: #B4B4BE; /*gris*/
+/*Colors*/
+$primary: #4296af;/*bleu*/
+$secondary: #fde3c9; /*blanc rougi*/
 $bodycolor: #63636d;
 
+/*Mixin to convert px to em*/
+$browser-context: 14; 
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em
+}
+
+/*Helpers*/
+%clearfix {
+  *zoom: 1;
+  &:before {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
 
 @import "typo";
 @import "forms";
