@@ -74,7 +74,7 @@ function handleError(err) {
       .pipe(iconfontCss({
         fontName: 'fonticon', // nom de la fonte, doit être identique au nom du plugin iconfont
         path: 'css',
-        targetPath: '../../sass/_fonts.scss', // emplacement de la css finale
+        targetPath: '../../sass/_glyphicons.scss', // emplacement de la css finale
         fontPath: 'fonts/' // emplacement des fontes finales
       }))
       .pipe(iconfont({
