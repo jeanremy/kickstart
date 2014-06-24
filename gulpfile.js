@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     cmq = require('gulp-combine-media-queries'),
     iconfont = require('gulp-iconfont'),
     iconfontCss = require('gulp-iconfont-css'),
+    svgmin = require('gulp-svgmin'),
     server = lr();
 
 /* 
@@ -71,6 +72,7 @@ function handleError(err) {
 
   gulp.task('glyphicons', function() {
    gulp.src('img/svg/*')
+      .pipe(svgmin())
       .pipe(iconfontCss({
         fontName: 'fonticon', // nom de la fonte, doit être identique au nom du plugin iconfont
         path: 'css',
