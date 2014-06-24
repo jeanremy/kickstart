@@ -1,4 +1,4 @@
-#Personnal Workflow Init#
+#Personnal Kickstart#
 
 *A way to save my configuration and to init projects*
 
@@ -44,6 +44,8 @@ Based on a specific organisation:
 		        │   │   └── ...
 		        │   ├── original
 		        │   │   └── ...
+				│   ├── svg
+		        │   │   └── ...
 		        │   └── ...
 		        ├── inc
 		        │   └── ...
@@ -54,11 +56,14 @@ Based on a specific organisation:
 		        │   └── main.min.js
 		        ├── sass
 		        │   ├── _forms.scss
-		        │   ├── _global.scss
-		        │   ├── _mediaqueries.scss
+		        │   ├── _fonts.scss
+		        │   ├── _glyphicons.scss
+		        │   ├── _common.scss
 		        │   ├── _print.scss
 		        │   ├── _reset.scss
 		        │   ├── _typo.scss
+		        │   ├── _variables.scss
+		        │   ├── _mixins.scss
 		        │   └── main.scss
 		        ├── index.html
 		        ├── package.json
