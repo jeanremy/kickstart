@@ -1,7 +1,10 @@
-/*
-  RESET
-  =====
-  Based on Eric Meyer's reste.css. 
+p {
+  transition: all 200ms ease;
+}
+
+/*  RESET
+    =====  */
+/*Based on Eric Meyer's reste.css. 
   Originally @import compass/reset but copied to change it (ex line height on html)
 */
 
@@ -61,6 +64,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-* {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
+
+a {text-decoration: none;}

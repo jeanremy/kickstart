@@ -1,13 +1,5 @@
-/*
-	TYPO
-	====
-*/
-$browser-context: 14; // Default
-
-@function em($pixels, $context: $browser-context) {
-  @return #{$pixels/$context}em
-}
-
+/*  TYPOGRAPHY
+	==========  */
 
 html {
 	font-size: 62.5%;

@@ -1,100 +1,78 @@
-# Kickstarter base for small projects #
+#Personnal Workflow Init#
 
-## Créer un projet avec Grunt ##
-Src: [Super tuto de Putain de code](http://putaindecode.fr/posts/js/premiers-pas-avec-grunt/)
+*A way to save my configuration and to init projects*
 
-D'abord, initialiser le projet en node js
-Node va créer un json avec les paramètres du projet.
-Pour cela, aller dans le répertoire, et faire npm init, puis entrée plusieurs fois
-Le Json est créé.
+##Sublime Text Setup##
 
-Ensuite, installer Grunt puis l'installer dans le projet
-        npm install -g grunt-cli
-        npm install grunt --save-dev
+###Package Control###
+*A better way to handle plugins*
 
-Ensuite, on crée un fichier de config grunt
-touch Gruntfile.js ne marche pas, le créer à la main, et coller ça:
-        module.exports = function(grunt) {
+[Installation](https://sublime.wbond.net/installation)
 
-          // Configuration de Grunt
-          grunt.initConfig({})
+###Emmet###
+*HTML helper*
 
-          // Définition des tâches Grunt
-          grunt.registerTask('default', '')
-
-        }
-
-/*Dépendances et paquets*/
+[Installation](https://github.com/sergeche/emmet-sublime)
 
 
-On installe compass:
-        npm install grunt-contrib-compass --save-dev
+##Gulp workflow##
+src: [Mark Goodyear](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
 
-On installe un compresseur de fichiers
-        npm install grunt-contrib-uglify --save-dev
+First init project in node. Go to folder:
 
-On installe le moyen de watcher les fichiers
-        npm install grunt-contrib-watch --save-dev
+        npm init
 
-On installe autoprefixer
-        npm install grunt-autoprefixer --save-dev
+Package.json is created. Then, install gulp locally:
+        
+        npm install gulp --save-dev
 
-On installe Image min
-        npm install grunt-contrib-imagemin --save-dev
+For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
-Désormais il suffit de lancer grunt tout court, watch étant la tâche par défaut. (Une seule tâche)
+Next, install plugins:
 
-[--save-dev permet de sauvegarder le package dans package.json pour pouvoir à tout moment le réinstaller en faisant npm install]
+        npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-concat gulp-uglify gulp-imagemin gulp-rename gulp-livereload tiny-lr gulp-cache gulp-plumber gulp-watch gulp-iconfont gulp-iconfont-css gulp-combine-media-queries --save-dev
 
-    module.exports = function(grunt) {
-
-      // Import 
-      grunt.loadNpmTasks('grunt-contrib-compass')
-      grunt.loadNpmTasks('grunt-contrib-uglify')
-      grunt.loadNpmTasks('grunt-autoprefixer')
-      grunt.loadNpmTasks('grunt-contrib-watch')
+Based on a specific organisation:
 
 
-      // Configuration de Grunt
-      grunt.initConfig({
-      compass: {
-        all: {                    
-          options: {            
-              sassDir: 'sass',
-              cssDir: 'css',
-              imagesDir: 'img',
-              outputStyle: 'compressed'
-          }
-        }
-      },
-      autoprefixer: {
-        no_dest: {
-            src: 'css/*.css'
-          }
-      },
-      uglify: {
-          options: {
-          separator: ';'
-          },
-          compile: {
-          src: 'js/main.js',
-          dest: 'js/main.min.js'
-          }
-      },
-      watch: {
-          prod: {
-          files: ['js/main.js', '/js/vendor/*.js', 'sass/*.scss', '*.html'],
-          tasks: ['task']
-          },
-          livereload: {
-            options: { livereload: true },
-            files: ['css/style.css', '*.html', '*.php', 'js/main.min.js'],
-          }
-      }
-      })
+				Project
+		        ├── css
+		        │   ├── main.css
+		        │   └── main.min.css
+		        ├── img
+		        │   ├── favicon
+		        │   │   └── ...
+		        │   ├── original
+		        │   │   └── ...
+		        │   └── ...
+		        ├── inc
+		        │   └── ...
+		        ├── js
+		        │   ├── vendor
+		        │   │   └── ...
+		        │   ├── main.js
+		        │   └── main.min.js
+		        ├── sass
+		        │   ├── _forms.scss
+		        │   ├── _global.scss
+		        │   ├── _mediaqueries.scss
+		        │   ├── _print.scss
+		        │   ├── _reset.scss
+		        │   ├── _typo.scss
+		        │   └── main.scss
+		        ├── index.html
+		        ├── package.json
+		        └── gulpfile.js
 
-      //Enregistrement des tâches et assignations
+What is doing Gulp?
+- Sassify all files, autoprefix it, create main.css, then minify it into main.min.css
+- Take all js except vendor, concatenate it, minify and rename it into main.min.js
+- Take images located in img/original, copy it in img/ and minify it
+- Livereload all
 
-      grunt.registerTask('default', 'watch')
-      grunt.registerTask('task', ['compass:all', 'autoprefixer:no_dest', 'uglify:compile'])
-    }
+
+Further reading:
+
+[Mark Goodyear](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
+[Travis Maynard](http://travismaynard.com/writing/getting-started-with-gulp)
+
