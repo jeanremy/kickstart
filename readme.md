@@ -22,13 +22,13 @@ First init project in node. Go to folder:
 
         npm init
 
-Package.json is created. Then, install gulp locally:
+Package.json is created. Then, install it:
         
-        npm install gulp --save-dev
+        npm install
 
 For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
-Next, install plugins:
+To install plugins manually:
 
         npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-concat gulp-uglify gulp-imagemin gulp-rename gulp-livereload tiny-lr gulp-cache gulp-plumber gulp-watch gulp-iconfont gulp-iconfont-css gulp-combine-media-queries --save-dev
 
