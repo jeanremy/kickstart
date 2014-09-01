@@ -1,6 +1,6 @@
 {
   "name": "Kickstart",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Just files with basic function to quickly jump into a project",
   "main": "index.html",
   "scripts": {
