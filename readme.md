@@ -24,7 +24,7 @@ First init project in node. Go to folder:
 
 Package.json is created. Then, install it:
         
-        npm install
+        npm install https://github.com/jeanremy/kickstart
 
 For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
