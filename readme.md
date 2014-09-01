@@ -18,13 +18,9 @@
 ##Gulp workflow##
 src: [Mark Goodyear](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
 
-First init project in node. Go to folder:
-
-        npm init
-
-Package.json is created. Then, install it:
+Just install the package
         
-        npm install https://github.com/jeanremy/kickstart
+        npm install https://github.com/jeanremy/kickstart/tarball/master
 
 For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
