@@ -8,7 +8,7 @@
   },
   "author": "JR",
   "license": "BSD-2-Clause",
-  "devDependencies": {
+  "dependencies": {
     "gulp": "~3.8.0",
     "gulp-rename": "~1.2.0",
     "tiny-lr": "0.0.7",
