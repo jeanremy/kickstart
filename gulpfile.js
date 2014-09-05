@@ -54,6 +54,8 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('js/'))
 });
 
+// Minify scripts before production: todo
+
 // Images
 gulp.task('images', function() {
   return gulp.src(['img/original/*.png', 'img/original/*.jpg'])

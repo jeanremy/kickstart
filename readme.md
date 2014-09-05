@@ -18,15 +18,12 @@
 ##Gulp workflow##
 src: [Mark Goodyear](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
 
-Just install the package
+Just clone the repo & install the package (you still need to have gulp installed globally)
         
-        npm install https://github.com/jeanremy/kickstart/tarball/master
+        npm install
 
 For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
-To install plugins manually:
-
-        npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-concat gulp-uglify gulp-imagemin gulp-rename gulp-livereload tiny-lr gulp-cache gulp-plumber gulp-watch gulp-iconfont gulp-iconfont-css gulp-combine-media-queries --save-dev
 
 Based on a specific organisation:
 
@@ -39,8 +36,6 @@ Based on a specific organisation:
 		        │   ├── favicon
 		        │   │   └── ...
 		        │   ├── original
-		        │   │   └── ...
-				│   ├── svg
 		        │   │   └── ...
 		        │   └── ...
 		        ├── inc
@@ -71,6 +66,9 @@ What is doing Gulp?
 - Take images located in img/original, copy it in img/ and minify it
 - Livereload all
 
+
+Things to do:
+Make a minify task (js) for the end of projects
 
 Further reading:
 
