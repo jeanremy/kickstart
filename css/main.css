@@ -26,7 +26,7 @@
 
 p {
 	-webkit-transition: all 200ms ease;
-	transition: all 200ms ease;
+	        transition: all 200ms ease;
 }
 
 /*  RESET
@@ -183,8 +183,7 @@ summary {
 *::before,
 *::after {
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
 a {
@@ -221,6 +220,10 @@ a {
 /* Sprite */
 
 .sprite {
+	background: url(../img/sprite.svg); /* IE 9+ & Android 3+ */
+}
+
+.no-svg .sprite {
 	background: url(../img/sprite.png);
 }
 
@@ -300,14 +303,6 @@ a {
 	text-transform: none;
 }
 
-.icon-col:before {
-	content: "\E001";
-}
-
-.icon-romain:before {
-	content: "\E002";
-}
-
 /*  TYPOGRAPHY
 	==========  */
 
@@ -331,6 +326,13 @@ body {
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
 	border: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="submit"],
+input[type="checkbox"] {
+	-webkit-appearance: none;
 }
 
 /*  GLOBAL
@@ -358,14 +360,6 @@ p {
 
 p {
 	font-size: 13px;
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-
-.sprite {
-	background: url(../img/sprite@2x.png);
-}
-
 }
 
 @media (max-width: 480px) {
