@@ -5,6 +5,7 @@
 @import "variables";
 @import "mixins";
 @import "reset";
+@import "grid_system";
 @import "grid";
 @import "commons";
 @import "fonts";
@@ -18,8 +19,9 @@ body {
 	color: $primary;
 }
 
-p {color: $primary;}
-.col>img {width: 100%;}
+p {
+	color: $primary;
+}
 
 /*  HEADER
 	======  */
