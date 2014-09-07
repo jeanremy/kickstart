@@ -5,6 +5,7 @@
 @import "variables";
 @import "mixins";
 @import "reset";
+@import "grid";
 @import "commons";
 @import "fonts";
 @import "typo";
@@ -18,6 +19,7 @@ body {
 }
 
 p {color: $primary;}
+.col>img {width: 100%;}
 
 /*  HEADER
 	======  */
