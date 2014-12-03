@@ -9,8 +9,9 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     cache = require('gulp-cache'),
-    livereload = require('gulp-livereload');
-    cmq = require('gulp-combine-media-queries');
+    livereload = require('gulp-livereload'),
+    cmq = require('gulp-combine-media-queries'),
+    pixrem = require('gulp-pixrem');
 
 /* 
  * Handle error to avoid break or sending a scss file in css folder
@@ -40,10 +41,12 @@ gulp.task('postprocess', function() {
   return gulp.src('css/main.css')
     .pipe(cmq())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(pixrem())
     .pipe(gulp.dest('css'))
     .pipe(minifycss())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('css'))
+
 });
 
 // Scripts
@@ -52,6 +55,7 @@ gulp.task('scripts', function() {
         .pipe(concat('main.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('js/'))
+
 });
 
 // Minify scripts before production: todo
@@ -84,5 +88,5 @@ gulp.task('default', function() {
     livereload.listen();
 
     // Watch any files in dist/, reload on change
-    gulp.watch(['css/main.css', 'js/main.js', 'img/original/**']).on('change', livereload.changed);
+    gulp.watch(['css/main.min.css', 'js/main.min.js', 'img/original/**']).on('change', livereload.changed);
 });
