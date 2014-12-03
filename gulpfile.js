@@ -1,7 +1,6 @@
 // Load plugins
 var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
-    plumber = require('gulp-plumber'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
@@ -11,37 +10,34 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     cmq = require('gulp-combine-media-queries'),
-    pixrem = require('gulp-pixrem');
+    pxtorem = require('gulp-pxtorem');
 
-/* 
- * Handle error to avoid break or sending a scss file in css folder
- * https://github.com/gulpjs/gulp/issues/259
-*/
-function handleError(err) {
-  console.log(err.toString());
-  this.emit('end');
-}
+
 
 // Sass
 gulp.task('sass', function() {
-    return gulp.src('sass/main.scss')
-      .pipe(plumber({
-        errorHandler: handleError
-      }))
+    return gulp.src('sass/main.scss')      
       .pipe(sass({ 
         style: 'expanded',
-        noCache: true
+        noCache: true,
+        sourcemap: 'none'
       }))
-      .pipe(plumber.stop())        
+      .on('error', function (err) { console.log(err.message); })
       .pipe(gulp.dest('css'))
 });
 
 // Postprocess
 gulp.task('postprocess', function() {
   return gulp.src('css/main.css')
+    .pipe(pxtorem({
+      root_value: 16,
+      unit_precision: 5,
+      prop_white_list: ['font', 'font-size', 'line-height', 'letter-spacing'],
+      replace: false,
+      media_query: false
+    }))
     .pipe(cmq())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(pixrem())
     .pipe(gulp.dest('css'))
     .pipe(minifycss())
     .pipe(rename({suffix: '.min'}))
