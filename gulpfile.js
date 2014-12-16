@@ -19,8 +19,7 @@ gulp.task('sass', function() {
     return gulp.src('sass/main.scss')      
       .pipe(sass({ 
         style: 'expanded',
-        noCache: true,
-        sourcemap: 'none'
+        noCache: true
       }))
       .on('error', function (err) { console.log(err.message); })
       .pipe(gulp.dest('css'))
