@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     filter      = require('gulp-filter'),
     cmq = require('gulp-combine-media-queries'),
+    plumber = require('gulp-plumber'),
     pxtorem = require('gulp-pxtorem');
 
 /* 
@@ -28,7 +29,8 @@ gulp.task('browser-sync', function() {
     browserSync({
         server: {
             baseDir: "./"
-        }
+        },
+        open: false
     });
 });
 
