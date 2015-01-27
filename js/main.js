@@ -1,20 +1,20 @@
 (function() {
+	
+	// jQuery(document).ready(function($) {
 
-	jQuery(document).ready(function($) {
-
-		/****************************
-			Variables
-		****************************/
-		var winHeight 		= $(window).height(),
-			winWidth 		= $(window).width();
+	// 	/****************************
+	// 		Variables
+	// 	****************************/
+	// 	var winHeight 		= $(window).height(),
+	// 		winWidth 		= $(window).width();
 
 		
 
-		// Set title container to 100% height			
-		(window.resize = function() {
-			$('.main').height(winHeight+'px');
-		})();
+	// 	// Set title container to 100% height			
+	// 	(window.resize = function() {
+	// 		$('.main').height(winHeight+'px');
+	// 	})();
 
-	});
+	// });
 
 })();

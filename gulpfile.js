@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     cache = require('gulp-cache'),
-    livereload = require('gulp-livereload');
+    browserSync = require('browser-sync'),
+    filter      = require('gulp-filter')
     cmq = require('gulp-combine-media-queries');
 
 /* 
@@ -21,6 +22,16 @@ function handleError(err) {
   this.emit('end');
 }
 
+// Reload
+gulp.task('browser-sync', function() {
+    browserSync({
+        server: {
+            baseDir: "./"
+        }
+    });
+});
+
+
 // Sass
 gulp.task('sass', function() {
     return gulp.src('sass/main.scss')
@@ -29,7 +40,8 @@ gulp.task('sass', function() {
       }))
       .pipe(sass({ 
         style: 'expanded',
-        noCache: true
+        noCache: true,
+        sourcemap: false
       }))
       .pipe(plumber.stop())        
       .pipe(gulp.dest('css'))
@@ -44,14 +56,22 @@ gulp.task('postprocess', function() {
     .pipe(minifycss())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('css'))
+    .pipe(filter('**/*.css')) // Filtering stream to only css files
+    .pipe(browserSync.reload({stream:true}));
 });
 
 // Scripts
 gulp.task('scripts', function() {  
     return gulp.src(['js/*.js', '!js/vendor/**', '!js/main.min.js'])
+        .pipe(plumber({
+            errorHandler: handleError
+          }))
         .pipe(concat('main.min.js'))
         .pipe(uglify())
+        .pipe(plumber.stop())  
         .pipe(gulp.dest('js/'))
+        .pipe(browserSync.reload({stream:true}));
+
 });
 
 // Minify scripts before production: todo
@@ -67,7 +87,7 @@ gulp.task('images', function() {
 
 
   // Default task
-gulp.task('default', function() {
+gulp.task('default', ['sass', 'postprocess', 'scripts', 'images', 'browser-sync'], function() {
 
     // Watch .scss files
     gulp.watch('sass/*.scss', ['sass']);
@@ -80,9 +100,4 @@ gulp.task('default', function() {
 
     // Watch image files
     gulp.watch('img/original/*', ['images']);
-
-    livereload.listen();
-
-    // Watch any files in dist/, reload on change
-    gulp.watch(['css/main.css', 'js/main.js', 'img/original/**']).on('change', livereload.changed);
 });

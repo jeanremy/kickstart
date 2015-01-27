@@ -20,7 +20,7 @@ src: [Mark Goodyear](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
 
 Just clone the repo & install the package (you still need to have gulp installed globally)
         
-        npm install
+        npm install & bower install
 
 For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
