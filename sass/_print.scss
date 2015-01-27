@@ -1,6 +1,9 @@
 /*  PRINT
 	=====  */
 
-p {
-	font-size: 13px;
+@media print {
+
+	p {
+		font-size: 13px;
+	}
 }

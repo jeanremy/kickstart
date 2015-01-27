@@ -9,7 +9,7 @@
 	text-transform: uppercase;
 	background-color: $primary;
 	color: #fff;
-	font-size: em(15);
+	font-size: 15px;
 }
 
 .btn--black {
@@ -21,7 +21,7 @@
 .btn--big {
 	@extend .btn;
 	display: block;
-	font-size: em(30);
+	font-size: 30px;
 	text-align: center;
 }
 

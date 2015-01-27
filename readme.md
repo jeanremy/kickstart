@@ -18,7 +18,7 @@
 ##Gulp workflow##
 src: [Mark Goodyear](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
 
-Just clone the repo & install the package (you still need to have gulp installed globally)
+Just clone the repo & install the package (you still need to have gulp and bower installed globally)
         
         npm install & bower install
 
