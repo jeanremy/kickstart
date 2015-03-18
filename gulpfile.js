@@ -37,12 +37,11 @@ gulp.task('browser-sync', function() {
 
 // Sass
 gulp.task('sass', function() {
-    return gulp.src('sass/main.scss')      
-      .pipe(sass({ 
-        style: 'expanded',
-        noCache: true,
-        sourcemap: false
-      }))
+    return sass('sass/main.scss', { 
+      style: 'expanded',
+      noCache: true,
+      sourcemap: false
+    })
       .on('error', function (err) { console.log(err.message); })
       .pipe(gulp.dest('css'))
 });
@@ -64,7 +63,7 @@ gulp.task('postprocess', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('css'))
     .pipe(filter('**/*.css')) // Filtering stream to only css files
-    .pipe(browserSync.reload({stream:true}));
+    .pipe(browserSync.reload({stream:true}))
 });
 
 // Scripts
@@ -77,8 +76,7 @@ gulp.task('scripts', function() {
         .pipe(uglify())
         .pipe(plumber.stop())  
         .pipe(gulp.dest('js/'))
-        .pipe(browserSync.reload({stream:true}));
-
+        .pipe(browserSync.reload({stream:true}))
 });
 
 // Minify scripts before production: todo
