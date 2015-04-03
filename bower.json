@@ -1,6 +1,6 @@
 {
-  "name": "bower test",
-  "version": "0.0.0",
+  "name": "kickstart",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "dependencies": {
