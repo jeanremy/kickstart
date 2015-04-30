@@ -1,0 +1,19 @@
+// VARIABLES
+
+// Colors
+$primary: #00FFB7; // Gris mega foncé
+$secondary: #f7f7f7; // Blanc un peu cassé
+
+
+// Fonts
+$source: 'Source Sans Pro', sans-serif;
+
+:selection {
+  color: #fff;
+  background-color: $primary;
+}
+
+::-moz-selection {
+	color:#fff;
+	background-color: $primary;
+}

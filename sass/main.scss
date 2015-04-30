@@ -1,42 +1,46 @@
-/*
-	Kickstart files for html/css project. Based on Kaelig documentation (blog.kaelig.fr) and on sass
-*/
-
-@import "variables";
-@import "mixins";
-@import "reset";
-@import "grid_system";
-@import "grid";
-@import "helpers";
-@import "fonts";
-@import "typo";
-@import "forms";
-
-/*  GLOBAL
-	======  */
-
-body {
-	color: $primary;
-}
-
-p {
-	color: $primary;
-}
-
-/*  HEADER
-	======  */
-
-
-/*  MAIN
-	====  */
-
-
-/*  FOOTER
-	======  */
+/* ==========================================================================
+  	Kickstart, a base to start html project
+ 	Author: JR
+  	Version: 2
+  	Credits: 
+  		- Kaelig & his book CSS maintenables avec Sass et Compass
+  		- Cathy Dutton for her organization
+  			https://github.com/cathydutton/maze/blob/master/src/sass/style.scss
 
 
 
-@import "print";
 
+/* BASE - Reset, mixins & variables
+==================================================== */
+
+	@import 'base/_reset.scss'; 
+	@import 'base/_variables.scss'; 
+	@import 'base/_mixins.scss';
+	
+
+/* FRAMEWORK - Some things taken from Bootstrap, grid system and utilities
+============================================================================= */
+
+	@import 'framework/_grid.scss'; 
+	@import 'framework/_grid_system.scss';
+	@import 'framework/_helpers.scss';
+
+
+/* OBJECTS - Repeating components
+==================================================== */
+
+	@import 'framework/_forms.scss'; 
+	@import 'framework/_buttons.scss'; 
+
+
+/* THEME - Main files for website
+==================================================== */
+
+	@import 'theme/_fonts.scss';
+	@import 'theme/_header.scss';
+	@import 'theme/_typo.scss';
+	@import 'theme/_footer.scss';
+	@import 'theme/_main.scss';
+	@import 'theme/_shame.scss';
 
 
