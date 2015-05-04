@@ -18,19 +18,19 @@
 	@import 'base/_mixins.scss';
 	
 
-/* FRAMEWORK - Some things taken from Bootstrap, grid system and utilities
+/* VENDOR - Some things taken from Bootstrap, grid system and utilities
 ============================================================================= */
 
-	@import 'framework/_grid.scss'; 
-	@import 'framework/_grid_system.scss';
-	@import 'framework/_helpers.scss';
+	@import 'vendor/_grid_system.scss';
+	@import 'vendor/_grid.scss'; 
+	@import 'vendor/_helpers.scss';
 
 
 /* OBJECTS - Repeating components
 ==================================================== */
 
-	@import 'framework/_forms.scss'; 
-	@import 'framework/_buttons.scss'; 
+	@import 'objects/_forms.scss'; 
+	@import 'objects/_buttons.scss'; 
 
 
 /* THEME - Main files for website
