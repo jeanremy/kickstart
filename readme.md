@@ -25,6 +25,9 @@ Just clone the repo & install the package (you still need to have gulp and bower
 For full installation of gulp, please refer to the official repo: [Gulp on GitHub](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
 
+In caseof conflicts
+sudo npm install --save-dev browser-sync gulp gulp-autoprefixer gulp-cache gulp-combine-media-queries gulp-concat gulp-filter imagemin-pngquant gulp-imagemin gulp-minify-css gulp-plumber gulp-pxtorem gulp-rename gulp-ruby-sass gulp-uglify 
+
 Based on a specific organisation:
 
 
