@@ -1,0 +1,77 @@
+/**********************
+
+	HOME
+
+**********************/
+@keyframes scroll {
+    0% {
+    	transform: scale(1,1);
+    	transform-origin: bottom center;
+    }
+
+    20% {
+		transform: scale(1,0);
+    	transform-origin: bottom center;
+    }
+
+    30% {
+		transform: scale(1,0);
+    	transform-origin: top center;
+    }
+
+    70% {
+		transform: scale(1,1);
+    	transform-origin: top center;
+    }
+    100% {
+		transform: scale(1,1);
+    	transform-origin: top center;
+    }
+}
+
+.home {
+	text-align: center;
+
+	&__title {
+		font-family: $main;
+		color: $beige;
+		font-size: 127px;
+	}
+
+	&__content {
+		&:after {
+			content: "";
+			height: 150px;
+			width: 1px;
+			background: $beige;
+			display: block;
+			margin: 60px auto 0;
+			animation: scroll 2s infinite;
+		}
+	}
+
+	.container:after {
+		content: 'scroll';
+		font-size: 14px;
+	}
+
+}
+
+
+
+
+/**********************
+
+	MEDIA QUERIES
+
+**********************/
+
+@media screen and (max-width: 420px) {
+
+	.home {
+
+		&__title {
+			font-size: 80px;
+		}
+	}
+}
