@@ -3,13 +3,25 @@
 ****************/
 
 @font-face {
-    font-family: 'ALK Tommaso';
-    src: url('fonts/alk-tommaso-webfont.eot');
-    src: url('fonts/alk-tommaso-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/alk-tommaso-webfont.woff2') format('woff2'),
-         url('fonts/alk-tommaso-webfont.woff') format('woff'),
-         url('fonts/alk-tommaso-webfont.ttf') format('truetype'),
-         url('fonts/alk-tommaso-webfont.svg#alk_tommasoregular') format('svg');
+	font-family: "fonticon";
+	src: url('fonts/fonticon.eot');
+	src: url('fonts/fonticon.eot?#iefix') format('eot'),
+		url('fonts/fonticon.woff') format('woff'),
+		url('fonts/fonticon.ttf') format('truetype'),
+		url('fonts/fonticon.svg#fonticon') format('svg');
 }
+
+.icon:before {
+	font-family: "fonticon";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
 
 

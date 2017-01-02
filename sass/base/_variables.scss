@@ -2,41 +2,20 @@
 	VARIABLES  
 ****************/
 
-// Fonts
-$main: 'ALK Tommaso', serif;
-$sec: "proxima-nova", sans-serif;
-
-
-
 // Colors
-$blue: #19385a;
-$beige: #f0c69d;
-$white: #fefcf7;
-
-$january: $blue;
-$february: #978b60;
-$march: #526770;
-$april: #127158;
-$may: #938c7d;
-$june: #6d6a73;
-$july: #91191c;
-$august: #635c6b;
-$september: #653b59;
-$october: #6b7c7d;
-$november: #645b57;
-$december: #ac6c29;
+$primary: #00FFB7; // Gris mega foncé
+$secondary: #f7f7f7; // Blanc un peu cassé
 
 
+// Fonts
+$source: 'Source Sans Pro', sans-serif;
 
 :selection {
   color: #fff;
-  background-color: $main;
+  background-color: $primary;
 }
 
 ::-moz-selection {
 	color:#fff;
-	background-color: $main;
+	background-color: $primary;
 }
-
-
-$easin: cubic-bezier(0, 0, 0.2, 1);

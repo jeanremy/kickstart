@@ -1,33 +1,109 @@
-'use strict';
-var gulp 			  = require('gulp'),
-	requireDir 		= require('require-dir'),
-	browserSync 	= require('browser-sync');
- 
+// Load plugins
+var gulp = require('gulp'),
+    sass = require('gulp-ruby-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    minifycss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    cache = require('gulp-cache'),
+    browserSync = require('browser-sync'),
+    filter      = require('gulp-filter'),
+    cmq = require('gulp-combine-media-queries'),
+    plumber = require('gulp-plumber'),
+    pxtorem = require('gulp-pxtorem');
 
-var paths = {
-  sass: ['sass/**/*.scss', 'sass/**/*._scss', 'sass/*.scss'],
-  js: 'js/**/*.js',
-  images: 'img/*',
-  icones: 'img/sprite/icons/*.svg'
-};
+/* 
+ * Handle error to avoid break or sending a scss file in css folder
+ * https://github.com/gulpjs/gulp/issues/259
+*/
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
 
-var url = "voeux2017.dev/";
 
-
-requireDir('./gulp-tasks');
-
-// Static Server + watching scss/html files
-gulp.task('default', ['sass', 'scripts'], function() {
-
-    browserSync.init({
-        open: 'external',
-        host: url,
-        proxy: url,
-        browser: 'Chrome' // "Firefox"
+// Reload
+gulp.task('browser-sync', function() {
+    browserSync({
+        server: {
+            baseDir: "./"
+        },
+        open: false
     });
+});
 
-    gulp.watch(paths.sass, ['sass']);
-    gulp.watch(paths.js, ['scripts']);
-    gulp.watch(paths.images, ['images']);
-    gulp.watch(paths.icones, ['sprite']);
+
+// Sass
+gulp.task('sass', function() {
+    return sass('sass/main.scss', { 
+      style: 'expanded',
+      noCache: true,
+      sourcemap: false
+    })
+      .on('error', function (err) { console.log(err.message); })
+      .pipe(gulp.dest('css'))
+});
+
+// Postprocess
+gulp.task('postprocess', function() {
+  return gulp.src('css/main.css')
+    .pipe(pxtorem({
+      root_value: 16,
+      unit_precision: 5,
+      prop_white_list: ['font', 'font-size', 'line-height', 'letter-spacing'],
+      replace: false,
+      media_query: false
+    }))
+    .pipe(cmq())
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest('css'))
+    .pipe(minifycss())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('css'))
+    .pipe(filter('**/*.css')) // Filtering stream to only css files
+    .pipe(browserSync.reload({stream:true}))
+});
+
+// Scripts
+gulp.task('scripts', function() {  
+    return gulp.src(['js/*.js', '!js/vendor/**', '!js/main.min.js'])
+        .pipe(plumber({
+            errorHandler: handleError
+          }))
+        .pipe(concat('main.min.js'))
+        .pipe(uglify())
+        .pipe(plumber.stop())  
+        .pipe(gulp.dest('js/'))
+        .pipe(browserSync.reload({stream:true}))
+});
+
+// Minify scripts before production: todo
+
+// Images
+gulp.task('images', function() {
+  return gulp.src(['img/original/*.png', 'img/original/*.jpg'])
+    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(gulp.dest('img/'))
+});
+
+
+
+
+  // Default task
+gulp.task('default', ['sass', 'postprocess', 'scripts', 'images', 'browser-sync'], function() {
+
+    // Watch .scss files
+    gulp.watch('sass/*.scss', ['sass']);
+
+    // Watch main.css files
+    gulp.watch('css/main.css', ['postprocess']);
+
+    // Watch .js files
+    gulp.watch('js/*.js', ['scripts']);
+
+    // Watch image files
+    gulp.watch('img/original/*', ['images']);
 });

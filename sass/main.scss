@@ -21,8 +21,9 @@
 /* VENDOR - Some things taken from Bootstrap, grid system and utilities
 ============================================================================= */
 
+	@import 'vendor/_grid_system.scss';
+	@import 'vendor/_grid.scss'; 
 	@import 'vendor/_helpers.scss';
-	@import 'vendor/_fullpage.scss';
 
 
 /* OBJECTS - Repeating components
@@ -39,10 +40,7 @@
 	@import 'theme/_header.scss';
 	@import 'theme/_typo.scss';
 	@import 'theme/_footer.scss';
-	@import 'theme/_layout.scss';
-	@import 'theme/_home.scss';
-	@import 'theme/_month.scss';
-	@import 'theme/_wish.scss';
+	@import 'theme/_main.scss';
 	@import 'theme/_shame.scss';
 
 

@@ -18,5 +18,12 @@
 	@extend %clearfix;
 }
 
+/* Sprite */
+.sprite {
+	background: url(../img/sprite.svg);/* IE 9+ & Android 3+ */
+	.no-svg & {
+		background: url(../img/sprite.png);
+	}
+}
 
 
